@@ -1,0 +1,45 @@
+	//Dan Walker
+	//Systems Programming and Assembly
+	//Project 2
+	//gcc (Ubuntu 5.4.0-6ubuntu1~16.04.11) 5.4.0 20160609
+	//arm-none-eabi-gcc (15:4.9.3+svn231177-1) 4.9.3 20150529
+
+	.text
+	@ main fuction strings
+mainPrint1:	.asciz	"Please enter first number: "
+mainPrint2:	.asciz 	"Please enter second number: "
+mainResult:	.asciz 	"The greatest common demoninator of %d and %d is %d\n"
+scan:		.asciz 	"%d"
+
+	.align 2
+	@ int main
+	.global main
+	.func main
+main:
+	push	{fp, lr}
+	add	fp, sp, #4
+
+	sub	sp, sp, #8
+	@	int a => [fp, #-8]
+	@	int b => [fp, #-12]
+
+	ldr	r0, =mainPrint1
+	bl	printf
+
+	ldr	r0, =scan
+	sub	r1, fp, #8
+	bl 	scanf
+
+	ldr	r0, =mainPrint2
+	bl	printf
+	
+
+	ldr 	r0, =scan
+	sub	r1, fp, #12
+	bl	scanf
+
+	
+
+	
+
+	.endfunc
